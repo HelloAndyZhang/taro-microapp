@@ -1,5 +1,6 @@
+
 const config = {
-  projectName: 'taro-microapp-shell',
+  projectName: 'taro-shell',
   date: '2022-9-9',
   designWidth: 750,
   deviceRatio: {
@@ -9,7 +10,7 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: [],
+  plugins: ['@taro-microapp/write-config-plugin',],
   defineConstants: {
   },
   copy: {
