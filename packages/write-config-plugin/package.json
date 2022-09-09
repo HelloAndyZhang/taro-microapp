@@ -1,0 +1,35 @@
+{
+  "name": "@taro-microapp/write-config-plugin",
+  "version": "4.0.12",
+  "description": "@umijs/mfsu",
+  "homepage": "https://github.com/umijs/umi/tree/master/packages/mfsu#readme",
+  "bugs": "https://github.com/umijs/umi/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/umijs/umi"
+  },
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "father build",
+    "dev": "father dev",
+    "test": "jest-turbo"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": [
+    "UUFE"
+  ],
+  "compiledConfig": {
+
+  }
+}
