@@ -1,13 +1,23 @@
 {
-  "miniprogramRoot": "./dist",
-  "projectname": "taro-microapp-shell",
+  "miniprogramRoot": "dist/",
+  "projectname": "@taro-microapp/taro-shell",
   "description": "Taro 微应用壳子",
   "appid": "touristappid",
   "setting": {
     "urlCheck": true,
     "es6": false,
     "postcss": false,
-    "minified": false
+    "preloadBackgroundData": false,
+    "minified": false,
+    "newFeature": true,
+    "autoAudits": false,
+    "coverView": true,
+    "showShadowRootInWxmlPanel": false,
+    "scopeDataCheck": false,
+    "useCompilerModule": false
   },
-  "compileType": "miniprogram"
+  "compileType": "miniprogram",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {}
 }

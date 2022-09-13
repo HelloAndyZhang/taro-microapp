@@ -43,7 +43,6 @@
     "@tarojs/service": "3.3.12",
     "@types/jest": "^27.5.1",
     "@types/node": "^18.7.16",
-    "@types/react": "^17.0.2",
     "@types/webpack-env": "^1.13.6",
     "husky": "^7.0.4",
     "jest": "^27.5.1",

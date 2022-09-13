@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "taro-microapp-shell",
-  "description": "Taro 微应用壳子",
+  "projectname": "taro-shell",
+  "description": "taro-shell",
   "appid": "touristappid",
   "setting": {
     "urlCheck": true,
