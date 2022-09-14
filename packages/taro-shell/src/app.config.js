@@ -1,5 +1,5 @@
 export default {
-  pages: ["pages/launch-screen/index"],
+  pages: [], //"pages/launch-screen/index"
   // 主包中的声明
   // pages: [
   //   {
@@ -10,7 +10,8 @@ export default {
   subPackages:[],
   packages: [
     // "{npmPackage || relativePathToPackage}/index"
-    "PaoTui/app"
+    "PaoTui/app",
+    "JiaZheng/app",
   ],
   window: {
     backgroundTextStyle: "light",

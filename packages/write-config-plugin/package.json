@@ -26,6 +26,7 @@
     "test:dev": "jest --watch"
   },
   "dependencies": {
+    "minimist": "^1.2.5"
   },
   "devDependencies": {
   },

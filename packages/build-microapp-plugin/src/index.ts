@@ -8,11 +8,7 @@ import {
   processTypeEnum,
   resolveMainFilePath,
 } from '@tarojs/helper'
-import * as webpack from 'webpack'
-import { PrerenderConfig, validatePrerenderPages } from '@tarojs/mini-runner/dist/prerender/prerender'
 
-
-import { componentConfig } from '@tarojs/mini-runner/dist/template/component'
 import * as path from 'path'
 
 
@@ -20,8 +16,9 @@ interface AppConfigs {
   [configName: string]: AppConfig
 }
 export default class BuildMicroAppPlugin extends MiniPlugin {
+  [x: string]: any
   appConfigs:AppConfigs={}
-  constructor(opts: any) {
+  constructor(private opts: any) {
     super(opts)
   }
 
@@ -36,10 +33,7 @@ export default class BuildMicroAppPlugin extends MiniPlugin {
     } else {
       this.appConfig = this.getAppConfig()
       this.getPackages()
-      this.getPackagePages()
-
       this.getPages()
-
       this.getPagesConfig()
       this.getDarkMode()
       this.getConfigFiles(compiler)
@@ -53,47 +47,44 @@ export default class BuildMicroAppPlugin extends MiniPlugin {
     if(!appPackages) return
     delete this.appConfig.packages
     for (const item of appPackages) {
-      const packagePath = resolveMainFilePath(path.join(this.options.sourceDir, item ), frameworkExts)
+      const filePath = resolveMainFilePath(path.join(this.options.sourceDir, item ), frameworkExts)
+      const fileConfigPath = this.getConfigFilePath(filePath)
       if (!this.isWatch) {
-        printLog(processTypeEnum.COMPILE, '发现子应用', this.getShowPath(packagePath))
+        printLog(processTypeEnum.COMPILE, '发现子应用', this.getShowPath(fileConfigPath))
       }
-      this.compileFile({
-        name: item,
-        path: packagePath,
-        isNative: false
-      })
-      const fileConfig = this.filesConfig[this.getConfigFilePath(item)]
-      const appConfig = fileConfig ? fileConfig.content || {} : {}
-      if (isEmptyObject(appConfig)) {
+      const fileConfig = readConfig(fileConfigPath)
+      if (isEmptyObject(fileConfig)) {
         throw new Error('子应用缺少 app 全局配置文件，请检查！')
       }
-
-      // console.log(appConfig,'appConfig')
-      this.appConfigs[`${this.getConfigFilePath(item)}`] = appConfig
+      this.appConfigs[this.getConfigFilePath(item)] = fileConfig
     }
+    this.getMergeAppConfig()
   }
 
-  getPackagePages(){
-    const { frameworkExts, prerender } = this.options
-    for (const appConfig in this.appConfigs) {
-      console.log(this.appConfigs[appConfig],'appConfig')
-      let pages = this.appConfigs[appConfig].pages as string[]
-
-      let subPackages = this.appConfigs[appConfig].subPackages as any[]
-
-      for (let i of subPackages) {
-        i.root = path.join(appConfig.replace('app.config',''),i.root)
-        this.appConfig.subPackages.push(i)
-      }
-      for(let i of pages){
-        console.log(path.join(appConfig.replace('app.config',''),i))
-        this.appConfig.pages.push(path.join(appConfig.replace('app.config',''),i))
+  getMergeAppConfig(){
+    for (const [filePath, appConfig] of Object.entries(this.appConfigs)) {
+      let packagePath = filePath.replace('app.config','')
+      for(let config  in  appConfig){
+        // 合并pages
+        if(config === 'pages'){
+          for(let i of appConfig.pages){
+            this.appConfig.pages.push(path.join(packagePath,i))
+          }
+          continue
+        }
+        // 合并 subPackages
+        if(config === 'subPackages'){
+          for (let i of appConfig.subPackages) {
+            i.root = path.join(packagePath,i.root)
+            this.appConfig.subPackages.push(i)
+          }
+          continue
+        }
+        //把打包的应用合并至壳子
+        if(filePath.includes(this.opts.PACKAGE_ENV)){
+          this.appConfig[config] = Object.assign((this.appConfig[config]||appConfig[config]),appConfig[config])
+        }
       }
     }
-
-
-    // const fileConfig = this.filesConfig[this.getConfigFilePath(item)]
-    // const appConfig = fileConfig ? fileConfig.content || {} : {}
-
   }
 }
