@@ -59,7 +59,8 @@
     "@types/react": "^17.0.2",
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "@taro-microapp/write-config-plugin":"latest"
   },
   "engines": {
     "node": ">=12.0.0"
