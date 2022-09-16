@@ -5,7 +5,6 @@ const hostConfig = {
     const global = taro.miniGlobal
     processApis(taro, global, {
       transformMeta (api: string, options: Record<string, any>) {
-        console.log(api,options)
         const routeApis = [
           'navigateTo',
           'redirectTo',
@@ -16,7 +15,6 @@ const hostConfig = {
           options.url = `/${options.modules}${options.url}`
           delete options.modules
         }
-        console.log(api,options)
         return {
           key: api,
           options

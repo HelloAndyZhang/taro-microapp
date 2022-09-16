@@ -4,7 +4,6 @@ import {  isArray, isString } from '@tarojs/shared'
 
 
 export default (ctx: IPluginContext,) => {
-
   ctx.registerMethod({
     name: 'onSetupClose',
     fn(platform: TaroPlatformBase) {
