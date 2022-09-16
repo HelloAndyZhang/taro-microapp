@@ -1,0 +1,38 @@
+{
+  "name": "@taro-microapp/plugin-inject",
+  "version": "1.0.0",
+  "description": "Taro 小程序端平台中间层插件",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && npm run prod",
+    "dev": "tsc -w",
+    "prod": "tsc",
+    "clean": "rimraf dist",
+    "test": "jest",
+    "test:dev": "jest --watch"
+  },
+  "files": [
+    "src",
+    "dist",
+    "index.js",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NervJS/taro-plugin-inject.git"
+  },
+  "keywords": [
+    "Taro"
+  ],
+  "author": "luckyadam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NervJS/tarojs-plugin-inject/issues"
+  },
+  "homepage": "https://github.com/NervJS/tarojs-plugin-inject#readme",
+  "peerDependencies": {
+  },
+  "devDependencies": {
+
+  }
+}

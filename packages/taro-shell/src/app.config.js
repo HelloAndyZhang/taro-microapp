@@ -23,8 +23,8 @@ export default {
     {
       "name": "PaoTui",
       "packages":[
-        "JiaZheng/app",
         "PaoTui/app",
+        "JiaZheng/app",
       ]
     }
   ],

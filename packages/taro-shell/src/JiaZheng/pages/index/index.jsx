@@ -10,8 +10,8 @@ const Index = () => {
       url:'/packages/order/pages/orderList/index'
     })
   }
-  console.log(process.env.PACKAGE_ENV)
-  console.log(process.env.TARO_ENV )
+  // console.log(process.env.PACKAGE_ENV)
+  // console.log(process.env.TARO_ENV )
   return (
     <View className="wrapper" >
       家政首页

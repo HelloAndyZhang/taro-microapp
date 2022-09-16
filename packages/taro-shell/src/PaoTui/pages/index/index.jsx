@@ -7,12 +7,14 @@ import './index.scss'
 const Index = () => {
   const goOrderList = ()=>{
     Taro.navigateTo({
-      url:'/PaoTui/packages/order/pages/orderList/index'
+      modules:"PaoTui",
+      url:'/packages/order/pages/orderList/index'
     })
   }
   const goJiaZheng =()=>{
     Taro.navigateTo({
-      url:'/JiaZheng/pages/index/index'
+      modules:"JiaZheng",
+      url:'/pages/index/index'
     })
   }
   return (

@@ -8,8 +8,9 @@ importers:
       '@commitlint/config-conventional': ^16.2.1
       '@pnpm/lockfile-file': ^5.0.3
       '@pnpm/logger': ^4.0.0
+      '@taro-microapp/plugin-build-microapp': workspace:*
+      '@taro-microapp/plugin-inject': workspace:*
       '@taro-microapp/plugin-platform-amap': workspace:*
-      '@taro-microapp/write-mini-plugin': workspace:*
       '@tarojs/helper': 3.3.12
       '@tarojs/mini-runner': 3.3.12
       '@tarojs/plugin-platform-alipay': 3.3.12
@@ -38,8 +39,9 @@ importers:
       '@commitlint/config-conventional': 16.2.4
       '@pnpm/lockfile-file': 5.3.4_@pnpm+logger@4.0.0
       '@pnpm/logger': 4.0.0
+      '@taro-microapp/plugin-build-microapp': link:packages/plugin-build-microapp
+      '@taro-microapp/plugin-inject': link:packages/plugin-inject
       '@taro-microapp/plugin-platform-amap': link:packages/plugin-platform-amap
-      '@taro-microapp/write-mini-plugin': link:packages/write-mini-plugin
       '@tarojs/helper': 3.3.12
       '@tarojs/mini-runner': 3.3.12
       '@tarojs/plugin-platform-alipay': registry.npmjs.org/@tarojs/plugin-platform-alipay/3.3.12
@@ -64,6 +66,15 @@ importers:
       turbo: 1.4.6
       typescript: registry.npmjs.org/typescript/4.8.3
 
+  packages/plugin-build-microapp:
+    specifiers:
+      minimist: ^1.2.5
+    dependencies:
+      minimist: registry.npmjs.org/minimist/1.2.6
+
+  packages/plugin-inject:
+    specifiers: {}
+
   packages/plugin-platform-amap:
     specifiers: {}
 
@@ -71,11 +82,13 @@ importers:
     specifiers:
       '@babel/core': ^7.8.0
       '@babel/runtime': ^7.7.7
+      '@taro-microapp/plugin-build-microapp': latest
+      '@taro-microapp/plugin-inject': latest
       '@taro-microapp/plugin-platform-amap': latest
-      '@taro-microapp/write-mini-plugin': latest
       '@tarojs/cli': 3.3.12
       '@tarojs/components': 3.3.12
       '@tarojs/mini-runner': 3.3.12
+      '@tarojs/plugin-inject': ^1.0.2
       '@tarojs/react': 3.3.12
       '@tarojs/runtime': 3.3.12
       '@tarojs/taro': 3.3.12
@@ -97,6 +110,7 @@ importers:
       '@babel/runtime': registry.npmjs.org/@babel/runtime/7.19.0
       '@tarojs/cli': registry.npmjs.org/@tarojs/cli/3.3.12_typescript@4.8.3
       '@tarojs/components': registry.npmjs.org/@tarojs/components/3.3.12
+      '@tarojs/plugin-inject': registry.npmjs.org/@tarojs/plugin-inject/1.0.2_@tarojs+shared@3.3.12
       '@tarojs/react': registry.npmjs.org/@tarojs/react/3.3.12_react@17.0.2
       '@tarojs/runtime': registry.npmjs.org/@tarojs/runtime/3.3.12
       '@tarojs/taro': registry.npmjs.org/@tarojs/taro/3.3.12
@@ -105,8 +119,9 @@ importers:
       taro-hooks: registry.npmjs.org/taro-hooks/1.5.9_welo2wydzkzspe6dk2pz3t3cve
     devDependencies:
       '@babel/core': registry.npmjs.org/@babel/core/7.19.0
+      '@taro-microapp/plugin-build-microapp': link:../plugin-build-microapp
+      '@taro-microapp/plugin-inject': link:../plugin-inject
       '@taro-microapp/plugin-platform-amap': link:../plugin-platform-amap
-      '@taro-microapp/write-mini-plugin': link:../write-mini-plugin
       '@tarojs/mini-runner': registry.npmjs.org/@tarojs/mini-runner/3.3.12
       '@tarojs/webpack-runner': registry.npmjs.org/@tarojs/webpack-runner/3.3.12
       '@types/react': registry.npmjs.org/@types/react/17.0.50
@@ -119,12 +134,6 @@ importers:
       eslint-plugin-react: registry.npmjs.org/eslint-plugin-react/7.31.8_eslint@6.8.0
       eslint-plugin-react-hooks: registry.npmjs.org/eslint-plugin-react-hooks/4.6.0_eslint@6.8.0
       stylelint: registry.npmjs.org/stylelint/9.3.0
-
-  packages/write-mini-plugin:
-    specifiers:
-      minimist: ^1.2.5
-    dependencies:
-      minimist: registry.npmjs.org/minimist/1.2.6
 
 packages:
 
@@ -11781,6 +11790,17 @@ packages:
       - webpack-command
     dev: true
 
+  registry.npmjs.org/@tarojs/plugin-inject/1.0.2_@tarojs+shared@3.3.12:
+    resolution: {integrity: sha512-9KwARiJDQVQRZi5H7mpzH5vj8Yx0xVEG94LkXoxfx/+dfCnADKqpGytV9faNWx4nlYttAk45BUacAcWPcHI01Q==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@tarojs/plugin-inject/-/plugin-inject-1.0.2.tgz}
+    id: registry.npmjs.org/@tarojs/plugin-inject/1.0.2
+    name: '@tarojs/plugin-inject'
+    version: 1.0.2
+    peerDependencies:
+      '@tarojs/shared': ^3.1.3
+    dependencies:
+      '@tarojs/shared': registry.npmjs.org/@tarojs/shared/3.3.12
+    dev: false
+
   registry.npmjs.org/@tarojs/plugin-platform-alipay/3.3.12:
     resolution: {integrity: sha512-DwgbgYmz3jj6nQTQ63K55r2fKm979P8M/ra/kLMSOvvXSFWnnaNRpabLjouQe6tfrWC4QXjy/kT9kLFpoN57yg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@tarojs/plugin-platform-alipay/-/plugin-platform-alipay-3.3.12.tgz}
     name: '@tarojs/plugin-platform-alipay'
@@ -14390,7 +14410,7 @@ packages:
       mississippi: registry.npmjs.org/mississippi/3.0.0
       mkdirp: registry.npmjs.org/mkdirp/0.5.6
       move-concurrently: registry.npmjs.org/move-concurrently/1.0.1
-      promise-inflight: registry.npmjs.org/promise-inflight/1.0.1
+      promise-inflight: registry.npmjs.org/promise-inflight/1.0.1_bluebird@3.7.2
       rimraf: registry.npmjs.org/rimraf/2.7.1
       ssri: registry.npmjs.org/ssri/6.0.2
       unique-filename: registry.npmjs.org/unique-filename/1.1.1
@@ -23587,6 +23607,20 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
+    dev: true
+
+  registry.npmjs.org/promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/promise-inflight/-/promise-inflight-1.0.1.tgz}
+    id: registry.npmjs.org/promise-inflight/1.0.1
+    name: promise-inflight
+    version: 1.0.1
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: registry.npmjs.org/bluebird/3.7.2
     dev: true
 
   registry.npmjs.org/promise/7.3.1:

@@ -1,6 +1,8 @@
 import { Component } from "react";
 import AppJS from './PaoTui/app.js';
 import "./app.scss";
+import Taro from "@tarojs/taro";
+
 class App extends AppJS{
   componentDidMount() {
     super.componentDidMount&&super.componentDidMount();

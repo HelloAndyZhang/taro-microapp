@@ -1,12 +1,12 @@
 {
-  "name": "@taro-microapp/write-mini-plugin",
+  "name": "@taro-microapp/plugin-build-microapp",
   "version": "1.0.0",
-  "description": "@taro-microapp/write-mini-plugin",
-  "homepage": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/write-mini-plugin#readme",
+  "description": "@taro-microapp/plugin-build-microapp",
+  "homepage": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/plugin-build-microapp#readme",
   "bugs": "https://github.com/umijs/umi/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/write-mini-plugin"
+    "url": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/plugin-build-microapp"
   },
   "license": "MIT",
   "main": "index.js",

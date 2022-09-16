@@ -9,7 +9,7 @@ import {
   mergeOption,
   processEnvOption
 } from '@tarojs/mini-runner/dist/webpack/chain'
-import BuildMicroAppPlugin from './build-microapp-plugin'
+import BuildMicroAppPlugin from './build-microapp'
 let miniPluginOptions = {};
 
 export default (ctx: IPluginContext) => {
@@ -18,12 +18,11 @@ export default (ctx: IPluginContext) => {
     string:['PACKAGE_ENV','API_ENV']
   })
   let defaultENV = ctx.initialConfig.env || {}
-  process.env.PACKAGE_ENV =  JSON.stringify(PACKAGE_ENV||"PaoTui")
-  process.env.API_ENV =  JSON.stringify(API_ENV||'prod')
-  console.log(process.env.PACKAGE_ENV )
+  process.env.PACKAGE_ENV =  PACKAGE_ENV||"PaoTui"
+  process.env.API_ENV =  API_ENV||'prod'
   const env = {
-    PACKAGE_ENV: process.env.PACKAGE_ENV,
-    API_ENV: process.env.API_ENV
+    PACKAGE_ENV: JSON.stringify(process.env.PACKAGE_ENV) ,
+    API_ENV:JSON.stringify(process.env.API_ENV)
   }
   Object.assign(ctx.initialConfig, { env: Object.assign(defaultENV, env) })
   ctx.modifyComponentConfig(({ config }) => {
@@ -123,6 +122,7 @@ export default (ctx: IPluginContext) => {
       alias,
       hot
     })
+    console.log( 'miniPluginOptions',miniPluginOptions)
   })
   ctx.modifyWebpackChain(({ chain }) => {
     chain.plugins.delete('miniPlugin')
