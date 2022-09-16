@@ -17,9 +17,12 @@
     "build:rn": "taro build --type rn",
     "build:qq": "taro build --type qq",
     "build:jd": "taro build --type jd",
+    "build:amap": "taro build --type amap",
     "build:quickapp": "taro build --type quickapp",
-    "dev:weapp": "npm run build:weapp -- --watch --PACKAGE_ENV PaoTui",
-    "dev:weapp:JiaZheng": "npm run build:weapp -- --watch --PACKAGE_ENV JiaZheng",
+    "dev:weapp": "npm run build:weapp -- --watch --PACKAGE_ENV",
+    "dev:weapp:test": "npm run build:weapp -- --watch --API_ENV test --PACKAGE_ENV",
+    "dev:weapp:ab": "npm run build:weapp -- --watch --API_ENV ab --PACKAGE_ENV",
+    "dev:weapp:prod": "npm run build:weapp -- --watch --API_ENV prod --PACKAGE_ENV",
     "dev:swan": "npm run build:swan -- --watch",
     "dev:alipay": "npm run build:alipay -- --watch",
     "dev:tt": "npm run build:tt -- --watch",
@@ -27,14 +30,15 @@
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:jd": "npm run build:jd -- --watch",
-    "dev:quickapp": "npm run build:quickapp -- --watch"
+    "dev:quickapp": "npm run build:quickapp -- --watch",
+    "dev:amap": "npm run build:amap  -- --watch"
   },
   "browserslist": [
     "last 3 versions",
     "Android >= 4.1",
     "ios >= 8"
   ],
-  "author": "",
+  "author": "uufe",
   "dependencies": {
     "@babel/runtime": "^7.7.7",
     "@tarojs/cli": "3.3.12",
@@ -60,7 +64,8 @@
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "@taro-microapp/write-config-plugin":"latest"
+    "@taro-microapp/write-mini-plugin":"latest",
+    "@taro-microapp/plugin-platform-amap":"latest"
   },
   "engines": {
     "node": ">=12.0.0"

@@ -1,6 +1,14 @@
 export default {
-  pages: ["pages/index/index", ],
-
+  pages: ["pages/index/index","pages/uCenter/index",  ],
+  subPackages: [
+    {
+      root: "packages/order",
+      name: "JiaZhengOrder",
+      pages: [
+        "pages/orderList/index",
+      ],
+    },
+  ],
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
@@ -23,5 +31,24 @@ export default {
   requiredPrivateInfos: [
     "getLocation"
   ],
-
+  tabBar: {
+    color: "#7A7E83",
+    selectedColor: "#FF7A07",
+    borderStyle: "black",
+    backgroundColor: "#ffffff",
+    list: [
+      {
+        pagePath: "JiaZheng/pages/index/index",
+        text: "家政首页",
+        iconPath: "JiaZheng/static/tabbar/uu-home-icon.png",
+        selectedIconPath: "JiaZheng/static/tabbar/uu-home-icon-on.png",
+      },
+      {
+        pagePath: "JiaZheng/pages/uCenter/index",
+        text: "我的",
+        iconPath: "JiaZheng/static/tabbar/uu-main-icon.png",
+        selectedIconPath: "JiaZheng/static/tabbar/uu-main-icon-on.png",
+      }
+    ]
+  }
 };

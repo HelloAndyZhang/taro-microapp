@@ -2,19 +2,30 @@ import { PLATFORMS, taroJsComponents } from '@tarojs/helper'
 import { IPluginContext } from '@tarojs/service'
 import minimist from 'minimist'
 import * as path from 'path'
-import BuildMicroAppPlugin from '@taro-microapp/build-microapp-plugin'
+
 import {
   getEntry,
   getRuntimeConstants,
   mergeOption,
   processEnvOption
 } from '@tarojs/mini-runner/dist/webpack/chain'
+import BuildMicroAppPlugin from './build-microapp-plugin'
 let miniPluginOptions = {};
 
 export default (ctx: IPluginContext) => {
   const appPath = ctx.ctx.appPath
-  const {PACKAGE_ENV="PaoTui"} = minimist(process.argv.slice(2))
-  Object.assign(miniPluginOptions,{PACKAGE_ENV})
+  const { PACKAGE_ENV, API_ENV}  = minimist(process.argv.slice(2),{
+    string:['PACKAGE_ENV','API_ENV']
+  })
+  let defaultENV = ctx.initialConfig.env || {}
+  process.env.PACKAGE_ENV =  JSON.stringify(PACKAGE_ENV||"PaoTui")
+  process.env.API_ENV =  JSON.stringify(API_ENV||'prod')
+  console.log(process.env.PACKAGE_ENV )
+  const env = {
+    PACKAGE_ENV: process.env.PACKAGE_ENV,
+    API_ENV: process.env.API_ENV
+  }
+  Object.assign(ctx.initialConfig, { env: Object.assign(defaultENV, env) })
   ctx.modifyComponentConfig(({ config }) => {
     const {
       buildAdapter = PLATFORMS.WEAPP,

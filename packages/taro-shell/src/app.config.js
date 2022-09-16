@@ -10,8 +10,23 @@ export default {
   subPackages:[],
   packages: [
     // "{npmPackage || relativePathToPackage}/index"
-    "PaoTui/app",
-    "JiaZheng/app",
+    // 格式一
+    // "JiaZheng/app",
+    // "PaoTui/app",
+    // 格式二
+    {
+      "name": "JiaZheng",
+      "packages":[
+        "JiaZheng/app",
+      ]
+    },
+    {
+      "name": "PaoTui",
+      "packages":[
+        "JiaZheng/app",
+        "PaoTui/app",
+      ]
+    }
   ],
   window: {
     backgroundTextStyle: "light",

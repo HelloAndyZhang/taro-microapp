@@ -1,12 +1,12 @@
 {
-  "name": "@taro-microapp/build-microapp-plugin",
+  "name": "@taro-microapp/write-mini-plugin",
   "version": "1.0.0",
-  "description": "@taro-microapp/build-microapp-plugin",
-  "homepage": "https://github.com/umijs/umi/tree/master/packages/mfsu#readme",
+  "description": "@taro-microapp/write-mini-plugin",
+  "homepage": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/write-mini-plugin#readme",
   "bugs": "https://github.com/umijs/umi/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/umijs/umi"
+    "url": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/write-mini-plugin"
   },
   "license": "MIT",
   "main": "index.js",
@@ -26,6 +26,7 @@
     "test:dev": "jest --watch"
   },
   "dependencies": {
+    "minimist": "^1.2.5"
   },
   "devDependencies": {
   },

@@ -11,7 +11,7 @@ const config = {
   outputRoot: "dist",
   plugins: [],
   defineConstants: {},
-  plugins: ['@taro-microapp/write-config-plugin',],
+  plugins: ['@taro-microapp/plugin-platform-amap','@taro-microapp/write-mini-plugin', ],
   copy: {
     patterns: [],
     options: {},

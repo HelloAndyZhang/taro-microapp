@@ -1,4 +1,4 @@
 export default {
   enableShareAppMessage: true,
-  navigationBarTitleText: '跑腿首页',
+  navigationBarTitleText: '家政订单列表',
 }
