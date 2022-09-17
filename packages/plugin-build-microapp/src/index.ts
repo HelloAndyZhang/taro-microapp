@@ -122,7 +122,6 @@ export default (ctx: IPluginContext) => {
       alias,
       hot
     })
-    console.log( 'miniPluginOptions',miniPluginOptions)
   })
   ctx.modifyWebpackChain(({ chain }) => {
     chain.plugins.delete('miniPlugin')
