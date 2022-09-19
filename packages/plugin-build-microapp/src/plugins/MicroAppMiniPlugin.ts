@@ -14,8 +14,8 @@ import * as path from 'path'
 interface AppConfigs {
   [configName: string]: AppConfig
 }
-const PLUGIN_NAME = 'BuildMicroAppPlugin'
-export default class BuildMicroAppPlugin extends MiniPlugin {
+const PLUGIN_NAME = 'MicroAppMiniPlugin'
+export default class MicroAppMiniPlugin extends MiniPlugin {
   [x: string]: any
   appConfigs: AppConfigs = {}
   PACKAGE_ENV = process.env.PACKAGE_ENV

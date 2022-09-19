@@ -1,4 +1,4 @@
-import { PLATFORMS, taroJsComponents } from '@tarojs/helper'
+import { PLATFORMS, taroJsComponents,JS_EXT } from '@tarojs/helper'
 import { IPluginContext } from '@tarojs/service'
 import minimist from 'minimist'
 import * as path from 'path'
@@ -9,7 +9,7 @@ import {
   mergeOption,
   processEnvOption
 } from '@tarojs/mini-runner/dist/webpack/chain'
-import BuildMicroAppPlugin from './build-microapp'
+import MicroAppMiniPlugin from './plugins/MicroAppMiniPlugin'
 let miniPluginOptions = {};
 
 export default (ctx: IPluginContext) => {
@@ -128,11 +128,18 @@ export default (ctx: IPluginContext) => {
     chain.merge({
       plugin: {
         install: {
-          plugin: BuildMicroAppPlugin,
+          plugin: MicroAppMiniPlugin,
           args: [miniPluginOptions,]
         }
       }
     })
+    chain.module
+    .rule('microapp-loader')
+    // .test(JS_EXT)
+    .test(/\app.js$/)
+    .use(path.resolve(__dirname, 'loaders/importAppLoader'))
+    .loader(path.resolve(__dirname, 'loaders/importAppLoader'))
+    // .options({hello:'xxxx'})
   })
   // ctx.modifyMiniConfigs((res)=>{
   //   console.log(res)
