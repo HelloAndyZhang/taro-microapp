@@ -1,3 +1,4 @@
+const path = require('path')
 const config = {
   projectName: "taro-shell",
   date: "2022-9-13",
@@ -16,7 +17,13 @@ const config = {
     patterns: [],
     options: {},
   },
+  alias: {
+    '@': path.resolve(__dirname, '..', 'src'),
+  },
   framework: "react",
+  optimizeMainPackage: {
+    enable: true
+  },
   mini: {
     postcss: {
       pxtransform: {

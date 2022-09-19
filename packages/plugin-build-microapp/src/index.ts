@@ -134,4 +134,16 @@ export default (ctx: IPluginContext) => {
       }
     })
   })
+  // ctx.modifyMiniConfigs((res)=>{
+  //   console.log(res)
+  //   return res
+  // })
+  // ctx.modifyBuildAssets((res)=>{
+  //   console.log(res)
+  //   return res
+  // })
+
+  // ctx.modifyRunnerOpts((res)=>{
+  //   console.log(res.opts.entry.app)
+  // })
 }

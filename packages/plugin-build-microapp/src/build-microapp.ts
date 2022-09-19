@@ -14,6 +14,7 @@ import * as path from 'path'
 interface AppConfigs {
   [configName: string]: AppConfig
 }
+const PLUGIN_NAME = 'BuildMicroAppPlugin'
 export default class BuildMicroAppPlugin extends MiniPlugin {
   [x: string]: any
   appConfigs: AppConfigs = {}
@@ -39,6 +40,18 @@ export default class BuildMicroAppPlugin extends MiniPlugin {
       this.getConfigFiles(compiler)
       this.addEntries()
     }
+    // compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
+    //   // compilation.hooks.optimizeChunkAssets.tap(PLUGIN_NAME, (chunks) => {
+    //   //   console.log(chunks)
+    //   // });
+    //   compilation.hooks.normalModuleLoader.tap(PLUGIN_NAME, (_loaderContext, module:/** TaroNormalModule */ any) => {
+    //     if(module.miniType  == "ENTRY"){
+    //       // console.log(module)
+    //     }
+    //   })
+
+
+    // });
   }
 
   getPackages() {
