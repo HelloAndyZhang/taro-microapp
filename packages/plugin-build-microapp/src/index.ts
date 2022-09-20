@@ -1,4 +1,4 @@
-import { PLATFORMS, taroJsComponents,JS_EXT } from '@tarojs/helper'
+import { PLATFORMS, taroJsComponents } from '@tarojs/helper'
 import { IPluginContext } from '@tarojs/service'
 import minimist from 'minimist'
 import * as path from 'path'
@@ -124,6 +124,8 @@ export default (ctx: IPluginContext) => {
     })
   })
   ctx.modifyWebpackChain(({ chain }) => {
+
+
     chain.plugins.delete('miniPlugin')
     chain.merge({
       plugin: {
@@ -131,26 +133,16 @@ export default (ctx: IPluginContext) => {
           plugin: MicroAppMiniPlugin,
           args: [miniPluginOptions,]
         }
+      },
+      module: {
+        rule: {
+          'microapp-loader': {
+            test: /src\/app\.js$/,
+            loader: require.resolve('./loaders/importAppLoader')
+          }
+        }
       }
     })
-    chain.module
-    .rule('microapp-loader')
-    // .test(JS_EXT)
-    .test(/\app.js$/)
-    .use(path.resolve(__dirname, 'loaders/importAppLoader'))
-    .loader(path.resolve(__dirname, 'loaders/importAppLoader'))
-    // .options({hello:'xxxx'})
-  })
-  // ctx.modifyMiniConfigs((res)=>{
-  //   console.log(res)
-  //   return res
-  // })
-  // ctx.modifyBuildAssets((res)=>{
-  //   console.log(res)
-  //   return res
-  // })
 
-  // ctx.modifyRunnerOpts((res)=>{
-  //   console.log(res.opts.entry.app)
-  // })
+  })
 }

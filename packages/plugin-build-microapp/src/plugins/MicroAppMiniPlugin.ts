@@ -6,6 +6,7 @@ import {
   readConfig,
   processTypeEnum,
   resolveMainFilePath,
+  normalizePath,
 } from '@tarojs/helper'
 
 import * as path from 'path'
@@ -87,7 +88,7 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
         // 合并pages
         if (config === 'pages') {
           for (let i of appConfig.pages as string[]) {
-            this.appConfig.pages.push(path.join(packagePath, i))
+            this.appConfig.pages.push(normalizePath(path.join(packagePath, i)))
           }
           continue
         }
