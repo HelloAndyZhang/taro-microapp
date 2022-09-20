@@ -3,7 +3,7 @@ import minimist from 'minimist'
 import MicroAppMiniPlugin from './plugins/MicroAppMiniPlugin'
 let miniPluginOptions = {};
 import {createMiniPluginOptions} from './utils'
-
+import * as path from 'path'
 
 export default (ctx: IPluginContext) => {
   const appPath = ctx.ctx.appPath
@@ -34,14 +34,17 @@ export default (ctx: IPluginContext) => {
         rule: {
           'microapp-loader': {
             test: /\/src\/app\.(js|jsx)$/,
-            loader: require.resolve('./loaders/importAppLoader'),
-            enforce: 'pre',
+            loader: require.resolve('./loaders/withAppLoader'),
+            options:{
+              PACKAGE_ENV:process.env.PACKAGE_ENV,
+            },
+            // enforce: 'pre',
           }
         }
       }
     })
     setTimeout(() => {
-      console.log(chain.toConfig().module.rules[0].oneOf[0].use)
+      console.log(chain.toConfig().module.rules[5])
     },2000)
   })
 }

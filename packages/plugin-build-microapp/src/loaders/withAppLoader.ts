@@ -1,10 +1,10 @@
+import { getOptions } from 'loader-utils';
 import { Project, SourceFile } from 'ts-morph'
 import type * as webpack from 'webpack'
 let  count = 0
 export default  function (this: webpack.LoaderContext<any>, source: string) {
-  console.log(source)
-  // console.log(this.toConfig())
   this.cacheable && this.cacheable()
+  // console.log(getOptions(this))
   let project = new Project()
   // // if(count > 1) return source
   count++
