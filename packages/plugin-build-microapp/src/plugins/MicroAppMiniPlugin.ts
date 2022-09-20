@@ -8,10 +8,12 @@ import {
   resolveMainFilePath,
   normalizePath,
 } from '@tarojs/helper'
-
+import * as webpack from 'webpack'
 import * as path from 'path'
 
-
+function isLoaderExist (loaders, loaderName: string) {
+  return loaders.some(item => item.loader === loaderName)
+}
 interface AppConfigs {
   [configName: string]: AppConfig
 }
@@ -23,7 +25,13 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
   constructor(opts: any) {
     super(opts)
   }
-
+  /**
+   * 插件入口
+   */
+  apply(compiler: webpack.Compiler) {
+    super.apply(compiler)
+    // this.addLoader(compiler)
+  }
   /**
    * 分析 app 入口文件，搜集页面、组件信息，
    * 往 this.dependencies 中添加资源模块
@@ -41,18 +49,6 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
       this.getConfigFiles(compiler)
       this.addEntries()
     }
-    // compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
-    //   // compilation.hooks.optimizeChunkAssets.tap(PLUGIN_NAME, (chunks) => {
-    //   //   console.log(chunks)
-    //   // });
-    //   compilation.hooks.normalModuleLoader.tap(PLUGIN_NAME, (_loaderContext, module:/** TaroNormalModule */ any) => {
-    //     if(module.miniType  == "ENTRY"){
-    //       // console.log(module)
-    //     }
-    //   })
-
-
-    // });
   }
 
   getPackages() {
@@ -82,7 +78,7 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
     for (const [filePath, appConfig] of Object.entries(this.appConfigs)) {
       let packagePath = filePath.replace('app.config', '')
       if (!this.isWatch) {
-        printLog(processTypeEnum.COMPILE, '合并配置', packagePath.replace('/',''))
+        printLog(processTypeEnum.COMPILE, '合并配置', packagePath.replace('/', ''))
       }
       for (let config in appConfig) {
         // 合并pages
@@ -106,5 +102,22 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
         }
       }
     }
+  }
+  addLoader(compiler) {
+    compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
+      compilation.hooks.normalModuleLoader.tap(PLUGIN_NAME, (_loaderContext, module:/** TaroNormalModule */ any) => {
+        if (module.miniType == "ENTRY") {
+          const loaderName = require.resolve('../loaders/importAppLoader')
+          if (!isLoaderExist(module.loaders, loaderName)) {
+            module.loaders.push({
+              loader: loaderName,
+              // enforce: 'pre',
+              options: {},
+              test: /\/src\/app\.(js|jsx)$/,
+            })
+          }
+        }
+      })
+    });
   }
 }

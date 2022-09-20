@@ -70,9 +70,11 @@ importers:
     specifiers:
       loader-utils: ^1.2.3
       minimist: ^1.2.5
+      ts-morph: ^15.1.0
     dependencies:
       loader-utils: registry.npmjs.org/loader-utils/1.4.0
       minimist: registry.npmjs.org/minimist/1.2.6
+      ts-morph: registry.npmjs.org/ts-morph/15.1.0
 
   packages/plugin-inject:
     specifiers: {}
@@ -12086,6 +12088,17 @@ packages:
       - webpack-plugin-serve
     dev: true
 
+  registry.npmjs.org/@ts-morph/common/0.16.0:
+    resolution: {integrity: sha512-SgJpzkTgZKLKqQniCjLaE3c2L2sdL7UShvmTmPBejAKd2OKV/yfMpQ2IWpAuA+VY5wy7PkSUaEObIqEK6afFuw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@ts-morph/common/-/common-0.16.0.tgz}
+    name: '@ts-morph/common'
+    version: 0.16.0
+    dependencies:
+      fast-glob: registry.npmjs.org/fast-glob/3.2.12
+      minimatch: registry.npmjs.org/minimatch/5.1.0
+      mkdirp: registry.npmjs.org/mkdirp/1.0.4
+      path-browserify: registry.npmjs.org/path-browserify/1.0.1
+    dev: false
+
   registry.npmjs.org/@types/archy/0.0.31:
     resolution: {integrity: sha512-v+dxizsFVyXgD3EpFuqT9YjdEjbJmPxNf1QIX9ohZOhxh1ZF2yhqv3vYaeum9lg3VghhxS5S0a6yldN9J9lPEQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/@types/archy/-/archy-0.0.31.tgz}
     name: '@types/archy'
@@ -14412,7 +14425,7 @@ packages:
       mississippi: registry.npmjs.org/mississippi/3.0.0
       mkdirp: registry.npmjs.org/mkdirp/0.5.6
       move-concurrently: registry.npmjs.org/move-concurrently/1.0.1
-      promise-inflight: registry.npmjs.org/promise-inflight/1.0.1
+      promise-inflight: registry.npmjs.org/promise-inflight/1.0.1_bluebird@3.7.2
       rimraf: registry.npmjs.org/rimraf/2.7.1
       ssri: registry.npmjs.org/ssri/6.0.2
       unique-filename: registry.npmjs.org/unique-filename/1.1.1
@@ -15081,6 +15094,12 @@ packages:
     name: co
     version: 4.6.0
     engines: {iojs: '>= 1.0.0', node: '>= 0.12.0'}
+    dev: false
+
+  registry.npmjs.org/code-block-writer/11.0.3:
+    resolution: {integrity: sha512-NiujjUFB4SwScJq2bwbYUtXbZhBSlY6vYzm++3Q6oC+U+injTqfPYFK8wS9COOmb2lueqp0ZRB4nK1VYeHgNyw==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/code-block-writer/-/code-block-writer-11.0.3.tgz}
+    name: code-block-writer
+    version: 11.0.3
     dev: false
 
   registry.npmjs.org/code-point-at/1.1.0:
@@ -22792,6 +22811,12 @@ packages:
     version: 0.0.1
     dev: true
 
+  registry.npmjs.org/path-browserify/1.0.1:
+    resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/path-browserify/-/path-browserify-1.0.1.tgz}
+    name: path-browserify
+    version: 1.0.1
+    dev: false
+
   registry.npmjs.org/path-dirname/1.0.2:
     resolution: {integrity: sha512-ALzNPpyNq9AqXMBjeymIjFDAkAFH06mHJH/cSBHAgU0s4vfpBn6b2nf8tiRLvagKD8RbTpq2FKTBg7cl9l3c7Q==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/path-dirname/-/path-dirname-1.0.2.tgz}
     name: path-dirname
@@ -23609,6 +23634,20 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
+    dev: true
+
+  registry.npmjs.org/promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/promise-inflight/-/promise-inflight-1.0.1.tgz}
+    id: registry.npmjs.org/promise-inflight/1.0.1
+    name: promise-inflight
+    version: 1.0.1
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: registry.npmjs.org/bluebird/3.7.2
     dev: true
 
   registry.npmjs.org/promise/7.3.1:
@@ -26617,6 +26656,15 @@ packages:
       compatfactory: registry.npmjs.org/compatfactory/1.0.1_typescript@4.8.3
       typescript: registry.npmjs.org/typescript/4.8.3
     dev: true
+
+  registry.npmjs.org/ts-morph/15.1.0:
+    resolution: {integrity: sha512-RBsGE2sDzUXFTnv8Ba22QfeuKbgvAGJFuTN7HfmIRUkgT/NaVLfDM/8OFm2NlFkGlWEXdpW5OaFIp1jvqdDuOg==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/ts-morph/-/ts-morph-15.1.0.tgz}
+    name: ts-morph
+    version: 15.1.0
+    dependencies:
+      '@ts-morph/common': registry.npmjs.org/@ts-morph/common/0.16.0
+      code-block-writer: registry.npmjs.org/code-block-writer/11.0.3
+    dev: false
 
   registry.npmjs.org/tsconfig-paths/3.14.1:
     resolution: {integrity: sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==, registry: https://registry.yarnpkg.com/, tarball: https://registry.npmjs.org/tsconfig-paths/-/tsconfig-paths-3.14.1.tgz}

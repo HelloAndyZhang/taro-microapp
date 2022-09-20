@@ -1,16 +1,25 @@
-import { getOptions } from 'loader-utils'
+import { Project, SourceFile } from 'ts-morph'
 import type * as webpack from 'webpack'
-
-export default function (this: webpack.LoaderContext<any>, source: string) {
+let  count = 0
+export default  function (this: webpack.LoaderContext<any>, source: string) {
+  console.log(source)
+  // console.log(this.toConfig())
   this.cacheable && this.cacheable()
-  // const options = getOptions(this)
-  // console.log(options)
-  // console.log('-----')
-  // console.log(source)
-  return source
-  // if (options.type === 'app') {
-  //   appLoader.call(this, source)
-  // } else {
-  //   pageLoader.call(this, source)
-  // }
+  let project = new Project()
+  // // if(count > 1) return source
+  count++
+  console.log(count)
+  // console.log(source,'jojojojojo')
+  // let sourceFile:SourceFile = project.createSourceFile("__tempfile__.ts", source);
+  // sourceFile.addImportDeclaration({
+  //   namedImports: ["withPaoTuiApp"],
+  //   moduleSpecifier: './PaoTui/app.js'
+  // })
+  // let   mainClasses = sourceFile.getClass("App")!;
+  // let mainConstructors = mainClasses?.getConstructors()
+  // mainClasses.addDecorator({
+  //   name: "withPaoTuiApp",
+  // });
+  // mainConstructors[0].addStatements('console.log(123);');
+  return   `console.log(123); ${source}`
 }

@@ -1,12 +1,8 @@
 import { Component } from "react";
-import {withJiaZhengApp} from './JiaZheng/app.js';
-import {withPaoTuiApp} from './PaoTui/app.js';
 import {printLog} from '@/utils'
 import "./app.scss";
 
-@withJiaZhengApp
-@withPaoTuiApp
-class App extends Component {
+export default class App extends Component {
   constructor(){
     printLog('App constructor','Root');
     super(...arguments);
@@ -36,5 +32,3 @@ class App extends Component {
     return this.props.children;
   }
 }
-
-export default App;
