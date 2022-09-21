@@ -11,16 +11,18 @@ import {
 import * as webpack from 'webpack'
 import * as path from 'path'
 
-function isLoaderExist (loaders, loaderName: string) {
+function isLoaderExist(loaders, loaderName: string) {
   return loaders.some(item => item.loader === loaderName)
 }
-interface AppConfigs {
+interface subAppConfigs {
   [configName: string]: AppConfig
 }
+
 const PLUGIN_NAME = 'MicroAppMiniPlugin'
 export default class MicroAppMiniPlugin extends MiniPlugin {
   [x: string]: any
-  appConfigs: AppConfigs = {}
+  packages: string[] = []
+  subAppConfigs: subAppConfigs = {}
   PACKAGE_ENV = process.env.PACKAGE_ENV
   constructor(opts: any) {
     super(opts)
@@ -54,12 +56,12 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
   getPackages() {
     const { frameworkExts } = this.options
     let appPackages = this.appConfig.packages
-    if (!appPackages) return
     delete this.appConfig.packages
-    let packages = appPackages.find((i) => i.name === this.PACKAGE_ENV)
-    if (packages) appPackages = packages.packages
-    if (appPackages.length === 0) return printLog(processTypeEnum.ERROR, '全局配置缺少 packages 字段，请检查！')
-    for (const item of appPackages) {
+    if (!appPackages) return
+    let appPackage = appPackages.find((i) => i.name === this.PACKAGE_ENV)
+    this.packages = appPackage?.packages || appPackages
+    if (this.packages.length === 0) return printLog(processTypeEnum.ERROR, '全局配置缺少 packages 字段，请检查！')
+    for (const item of this.packages) {
       const filePath = resolveMainFilePath(path.join(this.options.sourceDir, item), frameworkExts)
       const fileConfigPath = this.getConfigFilePath(filePath)
       if (!this.isWatch) {
@@ -69,13 +71,13 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
       if (isEmptyObject(fileConfig)) {
         throw new Error(`${this.getConfigFilePath(item)}应用缺少 app 全局配置文件，请检查！`)
       }
-      this.appConfigs[this.getConfigFilePath(item)] = fileConfig
+      this.subAppConfigs[this.getConfigFilePath(item)] = fileConfig
     }
     this.getMergeAppConfig()
   }
 
   getMergeAppConfig() {
-    for (const [filePath, appConfig] of Object.entries(this.appConfigs)) {
+    for (const [filePath, appConfig] of Object.entries(this.subAppConfigs)) {
       let packagePath = filePath.replace('app.config', '')
       if (!this.isWatch) {
         printLog(processTypeEnum.COMPILE, '合并配置', packagePath.replace('/', ''))
@@ -104,6 +106,7 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
     }
   }
   addLoader(compiler) {
+    // 添加 loader 时  数据修改无法修改
     compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
       compilation.hooks.normalModuleLoader.tap(PLUGIN_NAME, (_loaderContext, module:/** TaroNormalModule */ any) => {
         if (module.miniType == "ENTRY") {
@@ -112,7 +115,9 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
             module.loaders.push({
               loader: loaderName,
               // enforce: 'pre',
-              options: {},
+              options: {
+                appPackages: this.packages,
+              },
               test: /\/src\/app\.(js|jsx)$/,
             })
           }
