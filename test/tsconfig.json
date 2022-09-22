@@ -9,8 +9,7 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "jsx": "react",
-    "types": ["@types/jest", ],
-    "paths": {
-    }
+    "types": ["@types/jest"],
+    "paths": {}
   }
 }

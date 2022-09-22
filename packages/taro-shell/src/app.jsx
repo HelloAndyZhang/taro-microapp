@@ -1,23 +1,23 @@
-import { Component } from "react";
-import {printLog} from '@/utils'
-import "./app.scss";
-
+import { Component } from 'react';
+import { printLog } from '@/utils';
+import './app.scss';
+@withPaoTuiApp
 export default class App extends Component {
-  constructor(){
-    printLog('App constructor','Root');
+  constructor() {
+    printLog('App constructor', 'Root');
     super(...arguments);
   }
   componentWillMount(options) {
-    printLog('App will mount','Root');
+    printLog('App will mount', 'Root');
     super.componentWillMount && super.componentWillMount(options);
   }
   componentDidMount(options) {
-    printLog('App did mount','Root');
+    printLog('App did mount', 'Root');
     super.componentDidMount && super.componentDidMount(options);
   }
 
   componentDidShow(options) {
-    printLog('App did Show','Root');
+    printLog('App did Show', 'Root');
     super.componentDidShow && super.componentDidShow(options);
   }
 

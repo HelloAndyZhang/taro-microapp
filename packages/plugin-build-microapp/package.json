@@ -18,26 +18,23 @@
   ],
   "scripts": {
     "build": "run-s clean prod",
-    "dev": "tsc -w",
-    "prod": "tsc",
     "clean": "rimraf dist",
+    "dev": "tsc -w",
     "prepack": "pnpm run build",
+    "prod": "tsc",
     "test": "jest",
     "test:dev": "jest --watch"
   },
   "dependencies": {
-    "minimist": "^1.2.5",
     "loader-utils": "^1.2.3",
+    "minimist": "^1.2.5",
     "ts-morph": "^15.1.0"
   },
-
   "publishConfig": {
     "access": "public"
   },
   "authors": [
     "UUFE"
   ],
-  "compiledConfig": {
-
-  }
+  "compiledConfig": {}
 }

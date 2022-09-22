@@ -2,35 +2,34 @@
   "name": "@taro-microapp/plugin-platform-amap",
   "version": "1.0.0",
   "description": "高德小程序支持",
-  "author": "uufe",
-  "homepage": "https://github.com/nervjs/taro/tree/master/packages/taro-weapp#readme",
-  "license": "MIT",
-  "main": "index.js",
   "keywords": [
     "taro"
   ],
+  "homepage": "https://github.com/nervjs/taro/tree/master/packages/taro-weapp#readme",
+  "bugs": {
+    "url": "https://github.com/NervJS/taro/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NervJS/taro.git"
+  },
+  "license": "MIT",
+  "author": "uufe",
+  "main": "index.js",
+  "types": "types/index.d.ts",
   "files": [
     "index.js",
     "dist",
     "types"
   ],
-  "types": "types/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NervJS/taro.git"
-  },
   "scripts": {
     "build": "run-s clean prod",
-    "dev": "tsc -w",
-    "prod": "tsc",
     "clean": "rimraf dist",
+    "dev": "tsc -w",
     "prepack": "pnpm run build",
+    "prod": "tsc",
     "test": "jest",
     "test:dev": "jest --watch"
   },
-  "bugs": {
-    "url": "https://github.com/NervJS/taro/issues"
-  },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

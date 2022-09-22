@@ -1,12 +1,12 @@
-import { PLATFORMS, taroJsComponents } from '@tarojs/helper'
-import * as path from 'path'
+import { PLATFORMS, taroJsComponents } from '@tarojs/helper';
+import * as path from 'path';
 
 import {
   getEntry,
   getRuntimeConstants,
   mergeOption,
-  processEnvOption
-} from '@tarojs/mini-runner/dist/webpack/chain'
+  processEnvOption,
+} from '@tarojs/mini-runner/dist/webpack/chain';
 export const createMiniPluginOptions = (appPath, config) => {
   const {
     buildAdapter = PLATFORMS.WEAPP,
@@ -16,7 +16,7 @@ export const createMiniPluginOptions = (appPath, config) => {
       style: '.wxss',
       config: '.json',
       script: '.js',
-      templ: '.wxml'
+      templ: '.wxml',
     },
     outputRoot = 'dist',
     sourceRoot = 'src',
@@ -50,28 +50,34 @@ export const createMiniPluginOptions = (appPath, config) => {
     modifyMiniConfigs,
     modifyBuildAssets,
     onCompilerMake,
-    onParseCreateElement
-  } = config
-  const sourceDir = path.join(appPath, sourceRoot)
-  const outputDir = path.join(appPath, outputRoot)
-  alias[taroJsComponents + '$'] = taroComponentsPath || `${taroJsComponents}/mini`
-  env.FRAMEWORK = JSON.stringify(framework)
-  env.TARO_ENV = JSON.stringify(buildAdapter)
-  const runtimeConstants = getRuntimeConstants(runtime)
-  const constantsReplaceList = mergeOption([processEnvOption(env), defineConstants, runtimeConstants])
+    onParseCreateElement,
+  } = config;
+  const sourceDir = path.join(appPath, sourceRoot);
+  const outputDir = path.join(appPath, outputRoot);
+  alias[taroJsComponents + '$'] =
+    taroComponentsPath || `${taroJsComponents}/mini`;
+  env.FRAMEWORK = JSON.stringify(framework);
+  env.TARO_ENV = JSON.stringify(buildAdapter);
+  const runtimeConstants = getRuntimeConstants(runtime);
+  const constantsReplaceList = mergeOption([
+    processEnvOption(env),
+    defineConstants,
+    runtimeConstants,
+  ]);
   const entryRes = getEntry({
     sourceDir,
     entry,
-    isBuildPlugin
-  })
+    isBuildPlugin,
+  });
   const defaultCommonChunks = isBuildPlugin
     ? ['plugin/runtime', 'plugin/vendors', 'plugin/taro', 'plugin/common']
-    : ['runtime', 'vendors', 'taro', 'common']
-  let customCommonChunks = defaultCommonChunks
+    : ['runtime', 'vendors', 'taro', 'common'];
+  let customCommonChunks = defaultCommonChunks;
   if (typeof commonChunks === 'function') {
-    customCommonChunks = commonChunks(defaultCommonChunks.concat()) || defaultCommonChunks
+    customCommonChunks =
+      commonChunks(defaultCommonChunks.concat()) || defaultCommonChunks;
   } else if (Array.isArray(commonChunks) && commonChunks.length) {
-    customCommonChunks = commonChunks
+    customCommonChunks = commonChunks;
   }
   return {
     sourceDir,
@@ -102,6 +108,6 @@ export const createMiniPluginOptions = (appPath, config) => {
     blended,
     isBuildNativeComp,
     alias,
-    hot
-  }
-}
+    hot,
+  };
+};
