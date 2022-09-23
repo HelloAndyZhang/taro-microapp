@@ -29,8 +29,7 @@
     "loader-utils": "^1.2.3",
     "minimist": "^1.2.5",
     "ts-morph": "^15.1.0",
-    "@taro-microapp/loader-with-app":"latest"
-
+    "@taro-microapp/loader-with-app": "latest"
   },
   "publishConfig": {
     "access": "public"

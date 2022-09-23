@@ -16,7 +16,11 @@
     "jest": "jest",
     "test:e2e": "jest --config jest.e2e.config.ts",
     "tsc:check": "tsc --noEmit",
-    "turbo:clean": "rimraf .turbo"
+    "turbo:clean": "rimraf .turbo",
+    "version": "run-s version:*",
+    "version:release": "pnpm --parallel -r --filter=./packages/* exec npm version ${npm_package_version}",
+    "version:git": "git add . && git commit -m \"chore(release): publish ${npm_package_version}\"",
+    "version:changelog": "conventional-changelog -p angular"
   },
   "lint-staged": {
     "*.{jsx,less,md,json}": [

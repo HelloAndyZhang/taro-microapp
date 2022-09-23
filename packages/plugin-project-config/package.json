@@ -25,8 +25,7 @@
     "test": "jest",
     "test:dev": "jest --watch"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "publishConfig": {
     "access": "public"
   },
