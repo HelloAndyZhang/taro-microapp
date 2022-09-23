@@ -6,10 +6,10 @@ const hostConfig = {
     processApis(taro, global, {
       transformMeta(api: string, options: Record<string, any>) {
         const routeApis = ['navigateTo', 'redirectTo', 'reLaunch', 'switchTab'];
-        if (routeApis.includes(api)) {
+        if (routeApis.includes(api) && !options.url.includes(options.modules)) {
           options.url = `/${options.modules}${options.url}`;
-          delete options.modules;
         }
+        delete options.modules;
         return {
           key: api,
           options,

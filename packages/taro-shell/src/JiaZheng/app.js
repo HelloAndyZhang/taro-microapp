@@ -1,37 +1,39 @@
 import { Component } from "react";
-import {printLog} from '@/utils'
+import { printLog } from '@/utils'
+import { Provider } from 'react-redux'
+import store from '@/store'
 import "./app.scss";
 
 export function withJiaZhengApp(Component) {
   return class App extends Component {
-    constructor(){
+    constructor() {
       super(...arguments);
-      printLog( 'App constructor','JiaZheng');
+      printLog('App constructor', 'JiaZheng');
       this.state = {
         name: 'JiaZheng App'
       }
     }
     componentWillMount() {
       super.componentWillMount && super.componentWillMount();
-      printLog(' App will mount','JiaZheng');
+      printLog(' App will mount', 'JiaZheng');
     }
 
     componentDidMount() {
       super.componentDidMount && super.componentDidMount();
-      printLog(' App did mount','JiaZheng');
+      printLog(' App did mount', 'JiaZheng');
 
     }
 
     componentDidShow() {
       super.componentDidShow && super.componentDidShow();
-      printLog(' App did show','JiaZheng');
+      printLog(' App did show', 'JiaZheng');
     }
 
 
 
     componentDidCatchError() {
       super.componentDidCatchError && super.componentDidCatchError();
-      printLog('App catch error','JiaZheng');
+      printLog('App catch error', 'JiaZheng');
     }
 
     onPageNotFound(res) {
@@ -39,7 +41,7 @@ export function withJiaZhengApp(Component) {
     }
     // this.props.children 是将要会渲染的页面
     render() {
-      return this.props.children;
+      return <Provider store={store}>{this.props.children}</Provider>
     }
   };
 }
