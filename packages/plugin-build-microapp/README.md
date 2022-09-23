@@ -1,3 +1,3 @@
-# @umijs/mfsu
+# @taro-microapp/plugin-build-microapp
 
-See our website [umijs](https://umijs.org) for more information.
+根据app.config.js packages 字段 寻找子应用的app.config.js 文件 进行合并 
