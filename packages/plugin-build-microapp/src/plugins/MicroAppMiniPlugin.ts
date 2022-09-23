@@ -132,7 +132,7 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
         PLUGIN_NAME,
         (_loaderContext, module: /** TaroNormalModule */ any) => {
           if (module.miniType == 'ENTRY') {
-            const loaderName = require.resolve('../loaders/withAppLoader');
+            const loaderName = require.resolve("@taro-microapp/loader-with-app");
             if (!isLoaderExist(module.loaders, loaderName)) {
               module.loaders.push({
                 loader: loaderName,

@@ -34,6 +34,7 @@
     "@taro-microapp/plugin-build-microapp": "workspace:*",
     "@taro-microapp/plugin-inject": "workspace:*",
     "@taro-microapp/plugin-platform-amap": "workspace:*",
+    "@taro-microapp/plugin-project-config": "workspace:*",
     "@tarojs/helper": "3.3.12",
     "@tarojs/mini-runner": "3.3.12",
     "@tarojs/plugin-platform-alipay": "3.3.12",

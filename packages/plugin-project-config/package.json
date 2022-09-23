@@ -1,12 +1,12 @@
 {
-  "name": "@taro-microapp/plugin-build-microapp",
+  "name": "@taro-microapp/plugin-project-config",
   "version": "1.0.0",
-  "description": "@taro-microapp/plugin-build-microapp",
-  "homepage": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/plugin-build-microapp#readme",
+  "description": "@taro-microapp/plugin-project-config",
+  "homepage": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/plugin-project-config#readme",
   "bugs": "https://github.com/umijs/umi/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/plugin-build-microapp"
+    "url": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/plugin-project-config"
   },
   "license": "MIT",
   "main": "index.js",
@@ -26,11 +26,6 @@
     "test:dev": "jest --watch"
   },
   "dependencies": {
-    "loader-utils": "^1.2.3",
-    "minimist": "^1.2.5",
-    "ts-morph": "^15.1.0",
-    "@taro-microapp/loader-with-app":"latest"
-
   },
   "publishConfig": {
     "access": "public"

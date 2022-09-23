@@ -11,6 +11,7 @@ importers:
       '@taro-microapp/plugin-build-microapp': workspace:*
       '@taro-microapp/plugin-inject': workspace:*
       '@taro-microapp/plugin-platform-amap': workspace:*
+      '@taro-microapp/plugin-project-config': workspace:*
       '@tarojs/helper': 3.3.12
       '@tarojs/mini-runner': 3.3.12
       '@tarojs/plugin-platform-alipay': 3.3.12
@@ -42,6 +43,7 @@ importers:
       '@taro-microapp/plugin-build-microapp': link:packages/plugin-build-microapp
       '@taro-microapp/plugin-inject': link:packages/plugin-inject
       '@taro-microapp/plugin-platform-amap': link:packages/plugin-platform-amap
+      '@taro-microapp/plugin-project-config': link:packages/plugin-project-config
       '@tarojs/helper': 3.3.12
       '@tarojs/mini-runner': 3.3.12
       '@tarojs/plugin-platform-alipay': registry.npmjs.org/@tarojs/plugin-platform-alipay/3.3.12
@@ -66,12 +68,22 @@ importers:
       turbo: 1.4.6
       typescript: registry.npmjs.org/typescript/4.8.3
 
+  packages/loader-with-app:
+    specifiers:
+      loader-utils: ^1.2.3
+      ts-morph: ^15.1.0
+    dependencies:
+      loader-utils: registry.npmjs.org/loader-utils/1.4.0
+      ts-morph: registry.npmjs.org/ts-morph/15.1.0
+
   packages/plugin-build-microapp:
     specifiers:
+      '@taro-microapp/loader-with-app': latest
       loader-utils: ^1.2.3
       minimist: ^1.2.5
       ts-morph: ^15.1.0
     dependencies:
+      '@taro-microapp/loader-with-app': link:../loader-with-app
       loader-utils: registry.npmjs.org/loader-utils/1.4.0
       minimist: registry.npmjs.org/minimist/1.2.6
       ts-morph: registry.npmjs.org/ts-morph/15.1.0
@@ -82,6 +94,9 @@ importers:
   packages/plugin-platform-amap:
     specifiers: {}
 
+  packages/plugin-project-config:
+    specifiers: {}
+
   packages/taro-shell:
     specifiers:
       '@babel/core': ^7.8.0
@@ -90,6 +105,7 @@ importers:
       '@taro-microapp/plugin-build-microapp': latest
       '@taro-microapp/plugin-inject': latest
       '@taro-microapp/plugin-platform-amap': latest
+      '@taro-microapp/plugin-project-config': latest
       '@tarojs/cli': 3.3.12
       '@tarojs/components': 3.3.12
       '@tarojs/mini-runner': 3.3.12
@@ -132,6 +148,7 @@ importers:
       '@taro-microapp/plugin-build-microapp': link:../plugin-build-microapp
       '@taro-microapp/plugin-inject': link:../plugin-inject
       '@taro-microapp/plugin-platform-amap': link:../plugin-platform-amap
+      '@taro-microapp/plugin-project-config': link:../plugin-project-config
       '@tarojs/mini-runner': registry.npmjs.org/@tarojs/mini-runner/3.3.12
       '@tarojs/webpack-runner': registry.npmjs.org/@tarojs/webpack-runner/3.3.12
       '@types/react': registry.npmjs.org/@types/react/17.0.50

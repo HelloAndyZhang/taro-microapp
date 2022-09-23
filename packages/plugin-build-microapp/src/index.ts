@@ -33,7 +33,7 @@ export default (ctx: IPluginContext) => {
         rule: {
           'microapp-loader': {
             test: /src\/app.(js|jsx)$/,
-            loader: require.resolve('./loaders/withAppLoader'),
+            loader: require.resolve("@taro-microapp/loader-with-app"),
             options: {
               appPackages: ['PaoTui/app', 'JiaZheng/app'],
             },

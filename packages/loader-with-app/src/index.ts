@@ -1,4 +1,4 @@
-import { getOptions, stringifyRequest } from 'loader-utils';
+import { getOptions } from 'loader-utils';
 import { Project, SourceFile } from 'ts-morph';
 export default function (source: string) {
   this.cacheable && this.cacheable();
