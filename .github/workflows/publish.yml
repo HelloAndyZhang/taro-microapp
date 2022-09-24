@@ -8,6 +8,8 @@ on:
     branches:
       - next
     types: [closed]
+  # 手动触发部署
+  workflow_dispatch:
 
 env:
   CI: true
