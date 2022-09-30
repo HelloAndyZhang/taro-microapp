@@ -5,16 +5,13 @@
   "keywords": [
     "taro"
   ],
-  "homepage": "https://github.com/nervjs/taro/tree/master/packages/taro-weapp#readme",
-  "bugs": {
-    "url": "https://github.com/NervJS/taro/issues"
-  },
+  "homepage": "https://github.com/@taro-microapp/plugin-platform-amap#readme",
+  "bugs": "https://github.com/HelloAndyZhang/taro-microapp/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NervJS/taro.git"
+    "url": "git+https://github.com/HelloAndyZhang/taro-microapp.git"
   },
   "license": "MIT",
-  "author": "uufe",
   "main": "index.js",
   "types": "types/index.d.ts",
   "files": [
@@ -30,6 +27,12 @@
     "prod": "tsc",
     "test": "jest",
     "test:dev": "jest --watch"
+  },
+  "authors": [
+    "UUFE"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {}
 }

@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "@taro-microapp/plugin-build-microapp",
   "homepage": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/plugin-build-microapp#readme",
-  "bugs": "https://github.com/umijs/umi/issues",
+  "bugs": "https://github.com/HelloAndyZhang/taro-microapp/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/plugin-build-microapp"
+    "url": "git+https://github.com/HelloAndyZhang/taro-microapp.git"
   },
   "license": "MIT",
   "main": "index.js",
