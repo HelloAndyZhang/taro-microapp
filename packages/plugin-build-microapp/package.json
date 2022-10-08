@@ -1,6 +1,6 @@
 {
   "name": "@taro-microapp/plugin-build-microapp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "@taro-microapp/plugin-build-microapp",
   "homepage": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/plugin-build-microapp#readme",
   "bugs": "https://github.com/HelloAndyZhang/taro-microapp/issues",

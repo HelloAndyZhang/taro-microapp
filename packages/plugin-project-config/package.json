@@ -1,6 +1,6 @@
 {
   "name": "@taro-microapp/plugin-project-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "@taro-microapp/plugin-project-config",
   "homepage": "https://github.com/HelloAndyZhang/taro-microapp/tree/main/packages/plugin-project-config#readme",
   "bugs": "https://github.com/HelloAndyZhang/taro-microapp/issues",
