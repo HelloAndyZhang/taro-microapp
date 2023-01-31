@@ -19,8 +19,12 @@ export default class App extends Component {
 
   componentDidShow(options) {
     printLog('App did Show', 'Root');
+
+
+
     super.componentDidShow && super.componentDidShow(options);
   }
+
 
   componentDidCatchError(options) {
     super.componentDidCatchError && super.componentDidCatchError(options);

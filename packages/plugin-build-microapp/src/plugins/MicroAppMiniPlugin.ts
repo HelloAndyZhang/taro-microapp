@@ -17,11 +17,14 @@ function isLoaderExist(loaders, loaderName: string) {
 interface subAppConfigs {
   [configName: string]: AppConfig;
 }
-
+interface AppPackage{
+  name: string;
+  packages: string[];
+}
 const PLUGIN_NAME = 'MicroAppMiniPlugin';
 export default class MicroAppMiniPlugin extends MiniPlugin {
   [x: string]: any;
-  packages: string[] = [];
+  appPackage:AppPackage ;
   subAppConfigs: subAppConfigs = {};
   PACKAGE_ENV = process.env.PACKAGE_ENV;
   constructor(public opts: any) {
@@ -31,8 +34,8 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
    * 插件入口
    */
   apply(compiler: webpack.Compiler) {
+    this.addLoader(compiler)
     super.apply(compiler);
-    // this.addLoader(compiler)
   }
   /**
    * 分析 app 入口文件，搜集页面、组件信息，
@@ -55,17 +58,16 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
 
   getPackages() {
     const { frameworkExts } = this.options;
-    let appPackages = this.appConfig.packages;
+    let packagesConfig = this.appConfig.packages;
     delete this.appConfig.packages;
-    if (!appPackages) return;
-    let appPackage = appPackages.find((i) => i.name === this.PACKAGE_ENV);
-    this.packages = appPackage?.packages || appPackages;
-    if (this.packages.length === 0)
+    if (!packagesConfig) return;
+    this.appPackage = packagesConfig.find((i) => i.name === this.PACKAGE_ENV) || packagesConfig;
+    if (this.appPackage.packages.length === 0)
       return printLog(
         processTypeEnum.ERROR,
         '全局配置缺少 packages 字段，请检查！',
       );
-    for (const item of this.packages) {
+    for (const item of this.appPackage.packages) {
       const filePath = resolveMainFilePath(
         path.join(this.options.sourceDir, item),
         frameworkExts,
@@ -91,20 +93,21 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
 
   getMergeAppConfig() {
     for (const [filePath, appConfig] of Object.entries(this.subAppConfigs)) {
-      let packagePath = filePath.replace('app.config', '');
+      const packagePath = filePath.replace('app.config', '');
+      const packageName = packagePath.replace('/', '')
       if (!this.isWatch) {
         printLog(
           processTypeEnum.COMPILE,
           '合并配置',
-          packagePath.replace('/', ''),
+          packageName,
         );
       }
       for (let config in appConfig) {
         // 合并pages
         if (config === 'pages') {
-          for (let i of appConfig.pages as string[]) {
-            this.appConfig.pages.push(normalizePath(path.join(packagePath, i)));
-          }
+            for (let i of appConfig.pages as string[]) {
+              this.appConfig.pages.push(normalizePath(path.join(packagePath, i)));
+            }
           continue;
         }
         // 合并 subPackages
@@ -127,19 +130,37 @@ export default class MicroAppMiniPlugin extends MiniPlugin {
   }
   addLoader(compiler) {
     // 添加 loader 时  数据修改无法修改
-    compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
+    compiler.hooks.thisCompilation.tap(PLUGIN_NAME, (compilation) => {
+      compilation.hooks.buildModule.tap(PLUGIN_NAME,(module)=>{
+        if (module.miniType == 'ENTRY') {
+          console.log('0000')
+          const loaderName = require.resolve("@taro-microapp/loader-with-app");
+          if (!isLoaderExist(module.loaders, loaderName)) {
+            module.loaders.push({
+              loader: loaderName,
+              options: {
+                appPackages: this.appPackage.packages,
+              },
+            });
+            console.log(module.loaders)
+          }
+        }
+      })
       compilation.hooks.normalModuleLoader.tap(
         PLUGIN_NAME,
         (_loaderContext, module: /** TaroNormalModule */ any) => {
           if (module.miniType == 'ENTRY') {
+            console.log('111')
+            console.log(module.loaders)
             const loaderName = require.resolve("@taro-microapp/loader-with-app");
             if (!isLoaderExist(module.loaders, loaderName)) {
-              module.loaders.push({
+              module.loaders.unshift({
                 loader: loaderName,
                 options: {
-                  appPackages: this.packages,
+                  appPackages: this.appPackage.packages,
                 },
               });
+              console.log(module.loaders)
             }
           }
         },

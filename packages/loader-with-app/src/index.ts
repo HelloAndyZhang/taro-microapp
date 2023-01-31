@@ -1,6 +1,6 @@
 import { getOptions } from 'loader-utils';
 import { Project, SourceFile } from 'ts-morph';
-export default function (source: string) {
+export default function (source: string, inputSourceMap, overrides) {
   this.cacheable && this.cacheable();
   const options = getOptions(this) || {};
   let project = new Project();
@@ -24,6 +24,10 @@ export default function (source: string) {
       });
     }
   }
-  this.callback(null, sourceFile.getFullText());
-  return;
+  let  w = `console.log(4);${sourceFile.getFullText()}`
+  // console.log(sourceFile.getFullText())
+  console.log('ppp')
+  this.callback(null, w);
+  return w;
 }
+

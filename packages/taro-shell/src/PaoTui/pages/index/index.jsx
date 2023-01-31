@@ -3,12 +3,13 @@ import { View, Text, Button, Image } from '@tarojs/components';
 import { useEnv, useNavigationBar, useModal, useToast } from 'taro-hooks';
 import Taro from '@tarojs/taro';
 import HelloWorld from '../../components/hello-world/index';
-
+import { useStore } from 'react-redux'
 import {useSelector,useDispatch} from 'react-redux'
 import './index.scss';
 const Index =  () => {
 	const dispatch = useDispatch()
   const userSystem = useSelector(state => state.app.userSystem)
+  console.log(useStore())
   const goOrderList = () => {
     Taro.navigateTo({
       modules: 'PaoTui',

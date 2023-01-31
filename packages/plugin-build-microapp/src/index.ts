@@ -31,14 +31,14 @@ export default (ctx: IPluginContext) => {
       },
       module: {
         rule: {
-          'microapp-loader': {
-            test: /src\/app.(js|jsx)$/,
-            loader: require.resolve("@taro-microapp/loader-with-app"),
-            options: {
-              appPackages: ['PaoTui/app', 'JiaZheng/app'],
-            },
-            // enforce: 'pre',
-          },
+          // 'microapp-loader': {
+          //   test: /src\/app.(js|jsx)$/,
+          //   loader: require.resolve("@taro-microapp/loader-with-app"),
+          //   options: {
+          //     appPackages: ['PaoTui/app',],
+          //   },
+          //   // enforce: 'pre',
+          // },
         },
       },
     });

@@ -12,7 +12,7 @@ const config = {
   outputRoot: "dist",
   plugins: [],
   defineConstants: {},
-  plugins: ['@taro-microapp/plugin-platform-amap', '@taro-microapp/plugin-build-microapp', '@taro-microapp/plugin-project-config', ['@taro-microapp/plugin-inject']],
+  plugins: [ '@taro-microapp/plugin-build-microapp', '@taro-microapp/plugin-project-config', ['@taro-microapp/plugin-inject']],
   copy: {
     patterns: [],
     options: {},
@@ -21,10 +21,11 @@ const config = {
     '@': path.resolve(__dirname, '..', 'src'),
   },
   framework: "react",
-  optimizeMainPackage: {
-    enable: true
-  },
+
   mini: {
+    optimizeMainPackage: {
+      enable: true
+    },
     postcss: {
       pxtransform: {
         enable: true,
@@ -43,6 +44,28 @@ const config = {
           generateScopedName: "[name]__[local]___[hash:base64:5]",
         },
       },
+    },
+    commonChunks(commonChunks) {
+      commonChunks.push('JiaZheng/common')
+      return commonChunks
+    },
+    webpackChain(chain, webpack) {
+      chain.merge({
+        optimization: {
+          splitChunks: {
+            cacheGroups: {
+              'JiaZheng/common': {
+                name: 'JiaZheng/common',
+                priority: 10,
+                test(module) {
+                  const reg = /src[\\/]JiaZheng[\\/]((?!.config).)*\.js$/
+                  return reg.test(module.resource)
+                }
+              }
+            }
+          }
+        },
+      })
     },
   },
   h5: {

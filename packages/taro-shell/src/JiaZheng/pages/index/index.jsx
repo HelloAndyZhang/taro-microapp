@@ -3,10 +3,12 @@ import { View, Text, Button, Image } from '@tarojs/components';
 import { useEnv, useNavigationBar, useModal, useToast } from 'taro-hooks';
 import './index.scss';
 import Taro from '@tarojs/taro';
+import {getLocation } from '@/JiaZheng/utils/index'
 const Index = () => {
   const goOrderList = () => {
+    getLocation('goOrderList')
     Taro.navigateTo({
-      modules: 'PaoTui',
+      modules: 'JiaZheng',
       url: '/packages/order/pages/orderList/index',
     });
   };
